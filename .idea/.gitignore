@@ -1,4 +1,9 @@
 # Default ignored files
+target/
+.idea/
+HELP.md
+!**/src/main/**/target/
+!**/src/test/**/target/
 /shelf/
 /workspace.xml
 # Editor-based HTTP Client requests
