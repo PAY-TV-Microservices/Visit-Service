@@ -21,13 +21,15 @@ public class Visit {
     private Long id;
 
     @Column(name = "visit_id", nullable = false)
-    private Long visitId;
+    private String visitId;//confirmar se será uma string ou long
 
     @Column(name = "visit_date", nullable = false)
     private LocalDate visitDate;
 
     @Column(name = "user_id", nullable = false)
     private String userId;
+
+    private Boolean active;
 
     //TODO Colocar técnico
     //@JoinColumn(name = " technician_id", nullable = false)
