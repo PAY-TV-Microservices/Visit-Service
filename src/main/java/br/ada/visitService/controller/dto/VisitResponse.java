@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Setter
 public class VisitResponse {
     private Long id;
-    private Long visitId;
+    private String visitId;
     private LocalDate visitDate;
     private String userId;
 }
