@@ -8,6 +8,8 @@ import br.ada.visitService.utils.VisitConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 
 @Service
 public class VisitService {
@@ -19,8 +21,9 @@ public class VisitService {
     }
 
     public VisitResponse saveNewVisit(VisitRequest visitRequest){
-
-
+        Visit visit = VisitConvert.toEntity(visitRequest);
+        visit.setVisitId(UUID.randomUUID().toString());
+        visit.setActive(true);
 
     }
 }

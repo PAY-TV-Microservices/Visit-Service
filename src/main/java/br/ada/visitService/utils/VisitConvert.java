@@ -11,6 +11,7 @@ public class VisitConvert {
         visit.setUserId(visitRequest.getUserId());
 
         return visit;
-
     }
+
+
 }
