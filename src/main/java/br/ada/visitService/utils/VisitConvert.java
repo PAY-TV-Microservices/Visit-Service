@@ -4,6 +4,9 @@ import br.ada.visitService.controller.dto.VisitRequest;
 import br.ada.visitService.controller.dto.VisitResponse;
 import br.ada.visitService.model.Visit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class VisitConvert {
 
     public static Visit toEntity(VisitRequest visitRequest){
@@ -23,6 +26,15 @@ public class VisitConvert {
         visitResponse.setUserId(visit.getUserId());
 
         return visitResponse;
+    }
+
+    public static List<VisitResponse> toResponseList(List<Visit> visits){
+        List<VisitResponse> visitResponses=new ArrayList<>();
+        for(Visit visit : visits){
+            VisitResponse visitResponse = VisitConvert.toResponse(visit);
+            visitResponses.add(visitResponse);
+        }
+        return visitResponses;
     }
 
 
