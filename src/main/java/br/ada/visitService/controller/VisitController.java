@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/visit")
@@ -27,5 +28,10 @@ public class VisitController {
     @GetMapping("/id/{id}")
     public ResponseEntity<Visit> getVisitById(@PathVariable Long id){
         return ResponseEntity.ok(visitService.findVisitById(id));
+    }
+    
+    @GetMapping
+    public ResponseEntity<List<VisitResponse>> getAllVisits(){
+    	return ResponseEntity.ok(visitService.getAllVisits());
     }
 }

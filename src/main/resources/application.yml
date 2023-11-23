@@ -1,14 +1,14 @@
 server:
   servlet:
-    context-path: /invoice-service
-    port: 9082
+    context-path: /
+    port: 8080
     compression:
       mime-types:
         - application/json
 
 spring:
   application:
-    name: invoice-service
+    name: visit-service
   main:
     allow-bean-definition-overriding: true
   datasource:
