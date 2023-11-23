@@ -21,7 +21,7 @@ public class Visit {
     private Long id;
 
     @Column(name = "visit_id", nullable = false)
-    private Long visitId;//verificar se será uma string
+    private String visitId;//confirmar se será uma string ou long
 
     @Column(name = "visit_date", nullable = false)
     private LocalDate visitDate;

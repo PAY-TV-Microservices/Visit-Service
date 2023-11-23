@@ -4,8 +4,10 @@ import br.ada.visitService.controller.dto.VisitRequest;
 import br.ada.visitService.controller.dto.VisitResponse;
 import br.ada.visitService.model.Visit;
 import br.ada.visitService.repository.VisitRepository;
+import br.ada.visitService.utils.VisitConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class VisitService {
@@ -17,6 +19,8 @@ public class VisitService {
     }
 
     public VisitResponse saveNewVisit(VisitRequest visitRequest){
+
+
 
     }
 }
