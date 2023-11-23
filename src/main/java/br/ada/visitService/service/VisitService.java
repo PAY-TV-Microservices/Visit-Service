@@ -1,5 +1,7 @@
 package br.ada.visitService.service;
 
+import br.ada.visitService.controller.dto.VisitRequest;
+import br.ada.visitService.controller.dto.VisitResponse;
 import br.ada.visitService.model.Visit;
 import br.ada.visitService.repository.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,5 +14,9 @@ public class VisitService {
 
     public Visit findVisitById(Long visitId){
         return visitRepository.findVisitById(visitId);
+    }
+
+    public VisitResponse saveNewVisit(VisitRequest visitRequest){
+
     }
 }
