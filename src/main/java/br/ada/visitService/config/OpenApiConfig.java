@@ -1,4 +1,4 @@
-package br.ada.visitService.Config;
+package br.ada.visitService.config;
 
 
 import org.springframework.context.annotation.Bean;
