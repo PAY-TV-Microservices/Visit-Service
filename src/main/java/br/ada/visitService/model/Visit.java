@@ -29,6 +29,8 @@ public class Visit {
     @Column(name = "user_id", nullable = false)
     private String userId;
 
+    private Boolean active;
+
     //TODO Colocar técnico
     //@JoinColumn(name = " technician_id", nullable = false)
     //private Technician technician;
