@@ -25,5 +25,7 @@ public class VisitService {
         visit.setVisitId(UUID.randomUUID().toString());
         visit.setActive(true);
 
+        return VisitConvert.toResponse(visitRepository.save(visit));
+
     }
 }
