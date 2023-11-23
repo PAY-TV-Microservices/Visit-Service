@@ -34,4 +34,9 @@ public class VisitController {
     public ResponseEntity<List<VisitResponse>> getAllVisits(){
     	return ResponseEntity.ok(visitService.getAllVisits());
     }
+    
+    @DeleteMapping("/{id}")
+    public void cancelVisit(@PathVariable Long id) {
+    	visitService.deleteVisit(id);
+    }
 }

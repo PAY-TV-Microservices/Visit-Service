@@ -35,5 +35,9 @@ public class VisitService {
     	return VisitConvert.toResponseList(visits);
     }
     
-    
+    public void deleteVisit(Long id) {
+		Visit visit = visitRepository.findById(id).orElseThrow();
+		visit.setActive(false);
+		visitRepository.save(visit);
+	}
 }
