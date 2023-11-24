@@ -27,9 +27,14 @@ public class ScheduleVisitConsumer {
         String request = new String(message.getBody());
         log.info("[VisitConsumer] Message received {}", request);
 
-        List<VisitRequest> visitRequestList = Arrays.stream(objectMapper.readValue(request, VisitRequest[].class)).toList();
-        visitService.execute(visitRequestList);
-        log.info("[VisitConsumer] Message consumed.");
-        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        try {
+            List<VisitRequest> visitRequestList = Arrays.stream(objectMapper.readValue(request, VisitRequest[].class)).toList();
+            visitService.execute(visitRequestList);
+            log.info("[VisitConsumer] Message consumed.");
+        } catch (Exception e) {
+            log.info("[VisitConsumer] Message with error.");
+        } finally {
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        }
     }
 }
