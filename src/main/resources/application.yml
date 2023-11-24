@@ -44,7 +44,7 @@ liquibase:
   enabled: true
   change-log: classpath:db/changelog/changelog-local.xml
 
-## Enabling rabbitmq
+  ## Enabling rabbitmq
 
   rabbitmq:
     host: 127.0.0.1
@@ -61,3 +61,7 @@ liquibase:
 fila:
   visit:
     in: NEW_USER_VISIT
+
+pagamento:
+  url:
+    "http://localhost:3000/server/test"
