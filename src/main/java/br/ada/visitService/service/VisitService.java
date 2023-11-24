@@ -37,11 +37,19 @@ public class VisitService {
     }
 
     public VisitResponse saveNewVisit(VisitRequest visitRequest){
-        Visit visit = VisitConvert.toEntity(visitRequest);
-        visit.setVisitId(UUID.randomUUID().toString());
-        visit.setActive(true);
+        PaymentResponse paymentResponse = webClient.get().uri("/pagamento/consulta/" + visitRequest.getUserId())
+                .retrieve().bodyToMono(PaymentResponse.class).block();
 
-        return VisitConvert.toResponse(visitRepository.save(visit));
+        boolean scheduleVisit = (!visitRequest.isNewUser()) && (paymentResponse != null && paymentResponse.getPendingPayments().isEmpty());
+
+        if (scheduleVisit) {
+            Visit visit = VisitConvert.toEntity(visitRequest);
+            visit.setVisitId(UUID.randomUUID().toString());
+            visit.setActive(true);
+
+            return VisitConvert.toResponse(visitRepository.save(visit));
+        }
+        return null;
     }
     
     public List<VisitResponse> getAllVisits(){
