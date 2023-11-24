@@ -29,6 +29,7 @@ public class Visit {
     @Column(name = "user_id", nullable = false)
     private String userId;
 
+    @Column(name = "active", nullable = false)
     private Boolean active;
 
     //TODO Colocar técnico

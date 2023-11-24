@@ -42,14 +42,18 @@ liquibase:
 
 ## Enabling rabbitmq
 
-#  rabbitmq:
-#    host: 127.0.0.1
-#    port: 5672
-#    username: <username>
-#    password: <password>
-#    cache:
-#      connection:
-#        mode: CONNECTION
-#      channel:
-#        size: 50
-#      checkout-timeout: 10000
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: <username>
+    password: <password>
+    cache:
+      connection:
+        mode: CONNECTION
+      channel:
+        size: 50
+      checkout-timeout: 10000
+
+fila:
+  visit:
+    in: NEW_USER_VISIT
