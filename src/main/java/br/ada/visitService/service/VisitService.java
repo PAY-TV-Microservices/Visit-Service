@@ -1,6 +1,6 @@
 package br.ada.visitService.service;
 
-import br.ada.visitService.client.PaymentClient;
+import br.ada.visitService.controller.dto.PaymentResponse;
 import br.ada.visitService.controller.dto.TechnicianRequest;
 import br.ada.visitService.controller.dto.VisitRequest;
 import br.ada.visitService.controller.dto.VisitResponse;
@@ -11,6 +11,7 @@ import br.ada.visitService.utils.TechnicianConvert;
 import br.ada.visitService.utils.VisitConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +24,8 @@ public class VisitService {
     VisitRepository visitRepository;
 
     @Autowired
-    PaymentClient paymentClient;
+    WebClient webClient;
+
 
     public Visit getVisitById(String visitId){
         return visitRepository.findVisitById(visitId);
@@ -50,8 +52,10 @@ public class VisitService {
 
     public void execute(VisitRequest req) {
         //TODO se der tempo criar uma exceção aqui
-        boolean scheduleVisit = req.isNewUser() || paymentClient.checkOpenPayments(req.getUserId()).getPendingPayments().isEmpty();
-
+        PaymentResponse paymentResponse = webClient.get().uri("/pendingPayments/" + req.getUserId())
+                .retrieve().bodyToMono(PaymentResponse.class).block();
+        boolean scheduleVisit = req.isNewUser() || (paymentResponse != null && paymentResponse.getPendingPayments().isEmpty());
+        System.out.println("uhu");
         if (scheduleVisit){
             Visit visit = VisitConvert.toEntity(req);
             visit.setVisitId(UUID.randomUUID().toString());
@@ -61,7 +65,6 @@ public class VisitService {
         }
     }
 
-    
     public void deleteVisit(String visitId) {
 		Visit visit = visitRepository.findVisitById(visitId);
 		visit.setActive(false);
