@@ -157,6 +157,13 @@ HTTP status: 200 OK
   }
 }
 ```
+HTTP status: 404 NOT FOUND
+```json
+{
+  "statusResponse": 404,
+  "message": "Visita não encontrada"
+}
+```
 <summary> Cancelamento (DELETE) </summary>
     <br>
 
