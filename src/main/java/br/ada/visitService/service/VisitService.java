@@ -3,6 +3,7 @@ package br.ada.visitService.service;
 import br.ada.visitService.controller.dto.TechnicianRequest;
 import br.ada.visitService.controller.dto.VisitRequest;
 import br.ada.visitService.controller.dto.VisitResponse;
+import br.ada.visitService.exception.IdNotFoundException;
 import br.ada.visitService.model.Technician;
 import br.ada.visitService.model.Visit;
 import br.ada.visitService.repository.TechnicianRepository;
@@ -26,8 +27,10 @@ public class VisitService {
     @Autowired
     TechnicianRepository technicianRepository;
 
-    public Visit getVisitById(String visitId){
-        return visitRepository.findVisitById(visitId);
+    public VisitResponse getVisitById(String visitId) throws IdNotFoundException{
+    	Visit visit = visitRepository.findVisitById(visitId);
+    	if(visit == null) throw new IdNotFoundException("Visita não encontrada");
+        return VisitConvert.toResponse(visit);
     }
 
     public VisitResponse saveNewVisit(VisitRequest visitRequest){
@@ -60,14 +63,16 @@ public class VisitService {
     }
 
     
-    public void deleteVisit(String visitId) {
+    public void deleteVisit(String visitId) throws IdNotFoundException {
 		Visit visit = visitRepository.findVisitById(visitId);
+		if(visit == null) throw new IdNotFoundException("Visita não encontrada");
 		visit.setActive(false);
 		visitRepository.save(visit);
 	}
     
-    public VisitResponse assingVisit(String visitId, TechnicianRequest technicianRequest) {
+    public VisitResponse assingVisit(String visitId, TechnicianRequest technicianRequest) throws IdNotFoundException {
     	Visit visit = visitRepository.findVisitById(visitId);
+    	if(visit == null) throw new IdNotFoundException("Visita não encontrada");
     	Technician technician = TechnicianConvert.toEntity(technicianRequest);
     	technician.setTechnicianId(UUID.randomUUID().toString());
     	technicianRepository.save(technician);
