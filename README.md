@@ -15,9 +15,9 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
 
 ## :pushpin: Funcionalidades principais
 
-- Cadastrar Visita Técnicas: Cadastra uma visita através de uma requisição feita pelo microserviço Assinatura (quando um novo cliente assina um pacote) ou através de uma requisição POST da API. Recebe o id do usuário, um booleano indicando se o usuário é novo ou não e a data da assinatura.
+- Cadastrar Visita Técnicas: Cadastra uma visita através de uma requisição feita pelo microsserviço Assinatura (quando um novo cliente assina um pacote) ou através de uma requisição POST da API. Recebe o id do usuário, um booleano indicando se o usuário é novo ou não e a data da assinatura.
 
-- Visualizar Todas as Visitas Técnicas: Através de uma requisição GET retorna uma lista comm todas as visitas técnicas cadastradas.
+- Visualizar Todas as Visitas Técnicas: Através de uma requisição GET retorna uma lista com todas as visitas técnicas cadastradas.
 
 - Visualizar Visita Técnica por Id: Através de uma requisição GET retorna uma visita cadastrada após fornecimento do id da visita.
   
@@ -26,7 +26,7 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
 - Atribuir Visita Técnica: Atribui um técnico a visita técnica através de uma requisição POST após informado do id da visita e das informações do Tecnico.
 
 
-## Contratos
+## ☑️ Contratos
 ### VISITA-request-PAGAMENTO:
 ```json
 {
@@ -63,7 +63,7 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
 ]
 ```
 ## 📚 Documentação (endpoints)
-### :bust_in_silhouette: Visit
+### 🏠 Visit
   <summary> Cadastro (POST) </summary>
     <br>
 
@@ -89,7 +89,7 @@ HTTP status: 200 OK
   "userId": "string"
 }
 ```
-<summary> Cadastro (GET) </summary>
+<summary> Consulta (GET) </summary>
     <br>
 
   | Método | Funcionalidade | URL |
@@ -108,5 +108,63 @@ HTTP status: 200 OK
   }
 ]
 ```
+
+<summary> Cadastro (POST) </summary>
+    <br>
+
+  | Método | Funcionalidade | URL |
+  |---|---|---|
+  | `POST` | Realiza a atribuição de uma visita técnica cadastrada no sistema a um técnico | `http://localhost:8080/visit/technician/visitId`   
+  
+  **Request Body**
+  ```json
+{
+  "name": "string",
+  "cpf": "string"
+}
+```
+  **Response**  
+HTTP status: 200 OK
+  ```json
+{
+  "id": 0,
+  "visitId": "string",
+  "visitDate": "2023-11-24",
+  "userId": "string"
+}
+```
+<summary> Consulta (GET) </summary>
+    <br>
+
+  | Método | Funcionalidade | URL |
+  |---|---|---|
+  | `GET` | Realiza a consulta de uma visita técnica cadastrada no sistema através do id da visita | `http://localhost:8080/visit/id/visitId`   
+  
+  **Response**  
+HTTP status: 200 OK
+  ```json
+{
+  "id": 0,
+  "visitId": "string",
+  "visitDate": "2023-11-24",
+  "userId": "string",
+  "active": true,
+  "technician": {
+    "id": 0,
+    "name": "string",
+    "technicianId": "string",
+    "cpf": "string"
+  }
+}
+```
+<summary> Cancelamento (DELETE) </summary>
+    <br>
+
+  | Método | Funcionalidade | URL |
+  |---|---|---|
+  | `DELETE` | Realiza o cancelamento de uma visita técnica cadastrada no sistema através do id da visita | `http://localhost:8080/visit/visitId`   
+  
+  **Response**  
+HTTP status: 200 OK  
 
 > _O desenvolvimento dos Microsserviços de Fatura e Visita Técnica da PAY-TV foi realizado por [Dayane](https://github.com/acdayane), [Juliana](https://github.com/julianaando), [Karen](https://github.com/karenCLima), [Natalia](https://github.com/nataliagiacobo), [Raquel](https://github.com/raquelpcarvalho) e [Thaís](https://github.com/tdthais)._
