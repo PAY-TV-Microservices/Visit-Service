@@ -25,6 +25,20 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
   
 - Atribuir Visita Técnica: Atribui um técnico a visita técnica através de uma requisição POST após informado do id da visita e das informações do Tecnico.
 
+## ⚙️ Como Executar
+1. Clone o repositório em uma pasta de preferência
+  ```
+  https://github.com/PAY-TV-Microservices/Invoice-Service
+  ```
+2. Dentro do projeto, rode 
+  ```
+  docker-compose up
+  ```
+3. Visualize a interface da API utilizando o Swagger UI ou outra plataforma de sua preferência <br>
+> **Acesso ao Swagger UI** <br>
+   Se preferir, você pode explorar e testar os endpoints da API acessando o Swagger UI. <br>
+   Certifique-se de que o projeto esteja em execução e acesse a URL abaixo pelo seu navegador: <br>
+   http://localhost:8080/swagger-ui/index.html#/
 
 ## ☑️ Contratos
 ### VISITA-request-PAGAMENTO:
