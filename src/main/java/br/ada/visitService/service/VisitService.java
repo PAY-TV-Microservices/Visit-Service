@@ -48,7 +48,7 @@ public class VisitService {
         }
     }
 
-    public void execute(VisitRequest req){
+    public void execute(VisitRequest req) {
         //TODO se não for usuário novo, validar se está inadimplente
 
         Visit visit = VisitConvert.toEntity(req);
@@ -56,6 +56,7 @@ public class VisitService {
         visit.setVisitDate(LocalDate.now().plusDays(10));
         visit.setActive(true);
         visitRepository.save(visit);
+    }
 
     
     public void deleteVisit(String visitId) {

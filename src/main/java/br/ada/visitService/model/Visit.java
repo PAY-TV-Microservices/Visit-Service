@@ -32,8 +32,7 @@ public class Visit {
     @Column(name = "active", nullable = false)
     private Boolean active;
 
-    //TODO Colocar técnico
-    @JoinColumn(name = " technician_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "technician_id", nullable = false)
     private Technician technician;
-    //
 }
