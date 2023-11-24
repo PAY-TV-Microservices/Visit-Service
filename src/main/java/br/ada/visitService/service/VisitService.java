@@ -1,11 +1,11 @@
 package br.ada.visitService.service;
 
+import br.ada.visitService.client.PaymentClient;
 import br.ada.visitService.controller.dto.TechnicianRequest;
 import br.ada.visitService.controller.dto.VisitRequest;
 import br.ada.visitService.controller.dto.VisitResponse;
 import br.ada.visitService.model.Technician;
 import br.ada.visitService.model.Visit;
-import br.ada.visitService.repository.TechnicianRepository;
 import br.ada.visitService.repository.VisitRepository;
 import br.ada.visitService.utils.TechnicianConvert;
 import br.ada.visitService.utils.VisitConvert;
@@ -21,9 +21,9 @@ import java.util.UUID;
 public class VisitService {
     @Autowired
     VisitRepository visitRepository;
-    
+
     @Autowired
-    TechnicianRepository technicianRepository;
+    PaymentClient paymentClient;
 
     public Visit getVisitById(String visitId){
         return visitRepository.findVisitById(visitId);
@@ -49,13 +49,16 @@ public class VisitService {
     }
 
     public void execute(VisitRequest req) {
-        //TODO se não for usuário novo, validar se está inadimplente
+        //TODO se der tempo criar uma exceção aqui
+        boolean scheduleVisit = req.isNewUser() || paymentClient.checkOpenPayments(req.getUserId()).getPendingPayments().isEmpty();
 
-        Visit visit = VisitConvert.toEntity(req);
-        visit.setVisitId(UUID.randomUUID().toString());
-        visit.setVisitDate(LocalDate.now().plusDays(10));
-        visit.setActive(true);
-        visitRepository.save(visit);
+        if (scheduleVisit){
+            Visit visit = VisitConvert.toEntity(req);
+            visit.setVisitId(UUID.randomUUID().toString());
+            visit.setVisitDate(LocalDate.now().plusDays(10));
+            visit.setActive(true);
+            visitRepository.save(visit);
+        }
     }
 
     
