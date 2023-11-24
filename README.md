@@ -80,7 +80,7 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
 }
 ```
 **Response**  
-HTTP status: 200 OK
+HTTP status: 201 CREATED
 ```json
 {
   "id": 0,
