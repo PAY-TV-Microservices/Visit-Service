@@ -8,12 +8,15 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.Where;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "visits", uniqueConstraints = @UniqueConstraint(columnNames = "visit_id"))
+@Where(clause = "active is true")
 public class Visit {
 
     @Id

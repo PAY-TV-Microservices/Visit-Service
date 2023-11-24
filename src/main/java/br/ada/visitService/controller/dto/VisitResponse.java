@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+import br.ada.visitService.model.Technician;
+
 @Getter
 @Setter
 public class VisitResponse {
@@ -12,4 +14,5 @@ public class VisitResponse {
     private String visitId;
     private LocalDate visitDate;
     private String userId;
+    private Technician technician;
 }
