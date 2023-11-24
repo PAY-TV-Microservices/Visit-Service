@@ -64,4 +64,4 @@ fila:
 
 pagamento:
   url:
-    "http://localhost:3000/server/test"
+    "http://localhost:8080"

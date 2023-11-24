@@ -7,7 +7,7 @@ import org.springframework.web.service.annotation.GetExchange;
 
 public interface PaymentClient {
 
-    @GetExchange(value = "/pendingPayments/{userId}")
+    @GetExchange(value = "/consulta/pagamento/{userId}")
     PaymentResponse checkOpenPayments(@PathVariable(value = "userId") String userId);
 
 }

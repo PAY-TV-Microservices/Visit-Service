@@ -56,7 +56,7 @@ public class VisitService {
     }
 
     public void execute(VisitRequest req) {
-        PaymentResponse paymentResponse = webClient.get().uri("/pendingPayments/" + req.getUserId())
+        PaymentResponse paymentResponse = webClient.get().uri("/pagamento/consulta/" + req.getUserId())
                 .retrieve().bodyToMono(PaymentResponse.class).block();
 
         boolean scheduleVisit = req.isNewUser() || (paymentResponse != null && paymentResponse.getPendingPayments().isEmpty());
