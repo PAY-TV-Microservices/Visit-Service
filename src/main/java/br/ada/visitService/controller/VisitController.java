@@ -30,7 +30,7 @@ public class VisitController {
     @Operation(summary = "Marcar visita")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Visita marcada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Erro ao realizar a compra"),
+            @ApiResponse(responseCode = "400", description = "Erro ao marcar a visita"),
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
