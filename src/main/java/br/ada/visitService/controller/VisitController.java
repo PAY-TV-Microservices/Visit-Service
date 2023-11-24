@@ -1,5 +1,6 @@
 package br.ada.visitService.controller;
 
+import br.ada.visitService.controller.dto.TechnicianRequest;
 import br.ada.visitService.controller.dto.VisitRequest;
 import br.ada.visitService.controller.dto.VisitResponse;
 import br.ada.visitService.model.Visit;
@@ -25,13 +26,23 @@ public class VisitController {
         return ResponseEntity.created(URI.create("/visit/" + visit.getVisitId())).body(visit);
     }
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<Visit> getVisitById(@PathVariable Long id){
-        return ResponseEntity.ok(visitService.findVisitById(id));
+    @GetMapping("/id/{visitId}")
+    public ResponseEntity<Visit> getVisitById(@PathVariable String visitId){
+        return ResponseEntity.ok(visitService.getVisitById(visitId));
     }
     
     @GetMapping
     public ResponseEntity<List<VisitResponse>> getAllVisits(){
     	return ResponseEntity.ok(visitService.getAllVisits());
+    }
+    
+    @DeleteMapping("/{visitId}")
+    public void cancelVisit(@PathVariable String visitId){
+    	visitService.deleteVisit(visitId);
+    }
+    
+    @PostMapping("/technician/{visitId}")
+    public ResponseEntity<VisitResponse> assignVisit(@PathVariable String visitId, @RequestBody TechnicianRequest technicianRequest){
+    	return ResponseEntity.ok(visitService.assingVisit(visitId, technicianRequest));
     }
 }

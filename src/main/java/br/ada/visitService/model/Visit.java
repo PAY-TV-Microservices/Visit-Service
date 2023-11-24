@@ -33,7 +33,7 @@ public class Visit {
     private Boolean active;
 
     //TODO Colocar técnico
-    //@JoinColumn(name = " technician_id", nullable = false)
-    //private Technician technician;
+    @JoinColumn(name = " technician_id", nullable = false)
+    private Technician technician;
     //
 }
