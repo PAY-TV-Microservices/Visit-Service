@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "visits")
+@Table(name = "visits", uniqueConstraints = @UniqueConstraint(columnNames = "visit_id"))
 public class Visit {
 
     @Id
@@ -23,7 +23,7 @@ public class Visit {
     @Column(name = "visit_id", nullable = false)
     private String visitId;//confirmar se será uma string ou long
 
-    @Column(name = "visit_date", nullable = false)
+    @Column(name = "visit_date", nullable = false, columnDefinition = "DATE")
     private LocalDate visitDate;
 
     @Column(name = "user_id", nullable = false)
@@ -33,6 +33,6 @@ public class Visit {
     private Boolean active;
 
     @ManyToOne
-    @JoinColumn(name = "technician_id", nullable = false)
+    @JoinColumn(name = "technician_id")
     private Technician technician;
 }
