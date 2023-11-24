@@ -25,15 +25,6 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
   
 - Atribuir Visita Técnica: Atribui um técnico a visita técnica atrvés de uma requisição POST apo´s informado do id da visita e das informações do Tecnico.
 
-## 📚 Documentação (endpoints)
-### :bust_in_silhouette: Visit
-  <summary> Cadastro (POST) </summary>
-    <br>
-
-  | Método | Funcionalidade | URL |
-  |---|---|---|
-  | `POST` | Realiza o cadastro da visita no sistema | `http://localhost:8080/visit`
-  
 
 ## Contratos
 ### VISITA-request-PAGAMENTO:
@@ -71,4 +62,13 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
     }
 ]
 ```
+## 📚 Documentação (endpoints)
+### :bust_in_silhouette: Visit
+  <summary> Cadastro (POST) </summary>
+    <br>
 
+  | Método | Funcionalidade | URL |
+  |---|---|---|
+  | `POST` | Realiza o cadastro da visita no sistema | `http://localhost:8080/visit`
+  
+O desenvolvimento dos Microsserviços de Fatura e Visita Técnica da PAY-TV foi realizado por Dayane, Juliana, Karen, Natalia, Raquel e Thaís.
