@@ -71,4 +71,4 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
   |---|---|---|
   | `POST` | Realiza o cadastro da visita no sistema | `http://localhost:8080/visit`
   
-O desenvolvimento dos Microsserviços de Fatura e Visita Técnica da PAY-TV foi realizado por Dayane, Juliana, Karen, Natalia, Raquel e Thaís.
+> _O desenvolvimento dos Microsserviços de Fatura e Visita Técnica da PAY-TV foi realizado por [Dayane](https://github.com/acdayane), [Juliana](https://github.com/julianaando), [Karen](https://github.com/karenCLima), [Natalia](https://github.com/nataliagiacobo), [Raquel](https://github.com/raquelpcarvalho) e [Thaís](https://github.com/tdthais)._
