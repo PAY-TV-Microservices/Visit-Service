@@ -28,7 +28,7 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
 ## ⚙️ Como Executar
 1. Clone o repositório em uma pasta de preferência
   ```
-  https://github.com/PAY-TV-Microservices/Invoice-Service
+  https://github.com/PAY-TV-Microservices/Visit-Service
   ```
 2. Dentro do projeto, rode 
   ```
