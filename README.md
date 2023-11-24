@@ -15,7 +15,7 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
 
 ## :pushpin: Funcionalidades principais
 
-- Cadastrar Visita Técnicas: Cadastra uma visita através de uma requisição feita pelo microsserviço Assinatura (quando um novo cliente assina um pacote) ou através de uma requisição POST da API. Recebe o id do usuário, um booleano indicando se o usuário é novo ou não e a data da assinatura.
+- Marcar Visita Técnicas: Marca uma visita através de uma requisição feita pelo microsserviço Assinatura (quando um novo cliente assina um pacote) ou através de uma requisição POST da API. Recebe o id do usuário, um booleano indicando se o usuário é novo ou não e a data da assinatura.
 
 - Visualizar Todas as Visitas Técnicas: Através de uma requisição GET retorna uma lista com todas as visitas técnicas cadastradas.
 
@@ -109,7 +109,7 @@ HTTP status: 200 OK
 ]
 ```
 
-<summary> Cadastro (POST) </summary>
+<summary> Atribuição (POST) </summary>
     <br>
 
   | Método | Funcionalidade | URL |
@@ -133,7 +133,14 @@ HTTP status: 200 OK
   "userId": "string"
 }
 ```
-<summary> Consulta (GET) </summary>
+HTTP status: 404 NOT FOUND
+```json
+{
+  "statusResponse": 404,
+  "message": "Visita não encontrada"
+}
+```
+<summary> Consulta por Id (GET) </summary>
     <br>
 
   | Método | Funcionalidade | URL |
@@ -172,6 +179,14 @@ HTTP status: 404 NOT FOUND
   | `DELETE` | Realiza o cancelamento de uma visita técnica cadastrada no sistema através do id da visita | `http://localhost:8080/visit/visitId`   
   
   **Response**  
-HTTP status: 200 OK  
+HTTP status: 200 OK   
+
+HTTP status: 404 NOT FOUND
+```json
+{
+  "statusResponse": 404,
+  "message": "Visita não encontrada"
+}
+``` 
 
 > _O desenvolvimento dos Microsserviços de Fatura e Visita Técnica da PAY-TV foi realizado por [Dayane](https://github.com/acdayane), [Juliana](https://github.com/julianaando), [Karen](https://github.com/karenCLima), [Natalia](https://github.com/nataliagiacobo), [Raquel](https://github.com/raquelpcarvalho) e [Thaís](https://github.com/tdthais)._
