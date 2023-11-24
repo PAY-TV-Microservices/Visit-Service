@@ -75,7 +75,7 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
   ```json
 {
   "userId": "string",
-  "newUser": true,
+  "newUser": false,
   "visitDate": "2023-11-24"
 }
 ```
