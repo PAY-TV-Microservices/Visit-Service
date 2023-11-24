@@ -45,4 +45,9 @@ public class VisitController {
     public ResponseEntity<VisitResponse> assignVisit(@PathVariable String visitId, @RequestBody TechnicianRequest technicianRequest){
     	return ResponseEntity.ok(visitService.assingVisit(visitId, technicianRequest));
     }
+
+    @GetMapping("/userId/{userId}")
+    public ResponseEntity<List<VisitResponse>> getVisitByUserId(@PathVariable String userId){
+        return ResponseEntity.ok(visitService.getVisitsByUserId(userId));
+    }
 }
