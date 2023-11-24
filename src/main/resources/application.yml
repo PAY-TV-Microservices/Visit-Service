@@ -19,6 +19,8 @@ spring:
     hikari:
       maximum-pool-size: 2
 
+
+
   # JPA
   jpa:
     open-in-view: false
@@ -30,6 +32,8 @@ spring:
     properties:
       hibernate:
         jdbc:
+          lob:
+            non_contextual_creation: true
           batch_size: 50
   sql:
     init:

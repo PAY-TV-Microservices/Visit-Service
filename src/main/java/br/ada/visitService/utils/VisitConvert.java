@@ -24,6 +24,7 @@ public class VisitConvert {
         visitResponse.setVisitId(visit.getVisitId());
         visitResponse.setVisitDate(visit.getVisitDate());
         visitResponse.setUserId(visit.getUserId());
+        visitResponse.setTechnician(visit.getTechnician());
 
         return visitResponse;
     }
