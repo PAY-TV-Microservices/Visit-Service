@@ -53,11 +53,11 @@ public class VisitService {
     }
 
     public void execute(VisitRequest req) {
-        //TODO se der tempo criar uma exceção aqui
         PaymentResponse paymentResponse = webClient.get().uri("/pendingPayments/" + req.getUserId())
                 .retrieve().bodyToMono(PaymentResponse.class).block();
+
         boolean scheduleVisit = req.isNewUser() || (paymentResponse != null && paymentResponse.getPendingPayments().isEmpty());
-        System.out.println("uhu");
+
         if (scheduleVisit){
             Visit visit = VisitConvert.toEntity(req);
             visit.setVisitId(UUID.randomUUID().toString());
