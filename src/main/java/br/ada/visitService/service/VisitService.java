@@ -12,6 +12,7 @@ import br.ada.visitService.utils.VisitConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,13 +35,28 @@ public class VisitService {
         visit.setActive(true);
 
         return VisitConvert.toResponse(visitRepository.save(visit));
-
     }
     
     public List<VisitResponse> getAllVisits(){
     	List<Visit> visits = visitRepository.findAll();
     	return VisitConvert.toResponseList(visits);
     }
+
+    public void execute(List<VisitRequest> visitRequestList){
+        for (VisitRequest visitRequest : visitRequestList) {
+            execute(visitRequest);
+        }
+    }
+
+    public void execute(VisitRequest req){
+        //TODO se não for usuário novo, validar se está inadimplente
+
+        Visit visit = VisitConvert.toEntity(req);
+        visit.setVisitId(UUID.randomUUID().toString());
+        visit.setVisitDate(LocalDate.now().plusDays(10));
+        visit.setActive(true);
+        visitRepository.save(visit);
+
     
     public void deleteVisit(String visitId) {
 		Visit visit = visitRepository.findVisitById(visitId);
