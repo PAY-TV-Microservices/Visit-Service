@@ -5,7 +5,6 @@ import br.ada.visitService.controller.dto.VisitRequest;
 import br.ada.visitService.controller.dto.VisitResponse;
 import br.ada.visitService.model.Technician;
 import br.ada.visitService.model.Visit;
-import br.ada.visitService.repository.TechnicianRepository;
 import br.ada.visitService.repository.VisitRepository;
 import br.ada.visitService.utils.TechnicianConvert;
 import br.ada.visitService.utils.VisitConvert;
@@ -21,9 +20,6 @@ import java.util.UUID;
 public class VisitService {
     @Autowired
     VisitRepository visitRepository;
-    
-    @Autowired
-    TechnicianRepository technicianRepository;
 
     public Visit getVisitById(String visitId){
         return visitRepository.findVisitById(visitId);
