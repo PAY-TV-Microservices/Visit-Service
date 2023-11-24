@@ -23,7 +23,7 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
   
 - Cancelar Visita Técnica: Cancela uma visita técnica através de uma requisição DELETE após informado do id da visita.
   
-- Atribuir Visita Técnica: Atribui um técnico a visita técnica atrvés de uma requisição POST apo´s informado do id da visita e das informações do Tecnico.
+- Atribuir Visita Técnica: Atribui um técnico a visita técnica através de uma requisição POST após informado do id da visita e das informações do Tecnico.
 
 
 ## Contratos
@@ -69,7 +69,44 @@ A proposta é implementar um  microsserviço responsável pelo controle das visi
 
   | Método | Funcionalidade | URL |
   |---|---|---|
-  | `POST` | Realiza o cadastro da visita no sistema | `http://localhost:8080/visit`
-
+  | `POST` | Realiza o cadastro da visita no sistema | `http://localhost:8080/visit`  
   
+  **Request Body**
+  ```json
+{
+  "userId": "string",
+  "newUser": true,
+  "visitDate": "2023-11-24"
+}
+```
+**Response**  
+HTTP status: 200 OK
+```json
+{
+  "id": 0,
+  "visitId": "string",
+  "visitDate": "2023-11-24",
+  "userId": "string"
+}
+```
+<summary> Cadastro (GET) </summary>
+    <br>
+
+  | Método | Funcionalidade | URL |
+  |---|---|---|
+  | `GET` | Realiza a visualização de todas as visitas cadastradas no sistema | `http://localhost:8080/visit`   
+  
+  **Response**  
+HTTP status: 200 OK
+  ```json
+[
+  {
+    "id": 0,
+    "visitId": "string",
+    "visitDate": "2023-11-24",
+    "userId": "string"
+  }
+]
+```
+
 > _O desenvolvimento dos Microsserviços de Fatura e Visita Técnica da PAY-TV foi realizado por [Dayane](https://github.com/acdayane), [Juliana](https://github.com/julianaando), [Karen](https://github.com/karenCLima), [Natalia](https://github.com/nataliagiacobo), [Raquel](https://github.com/raquelpcarvalho) e [Thaís](https://github.com/tdthais)._
