@@ -50,7 +50,7 @@ public class VisitService {
             visit.setActive(true);
 
             return VisitConvert.toResponse(visitRepository.save(visit));
-        } else if(!visitRequest.isNewUser()){
+        } else if(visitRequest.isNewUser()){
             throw new UserNewException("Visita não pode ser realizada. Para novo usuário, o agendamento é realizado pela Assinatura.");
         } else{
             throw new PendingPaymentsException("Visita não pode ser realizada, usuário em débito.");
