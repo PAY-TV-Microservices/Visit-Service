@@ -4,6 +4,8 @@ import br.ada.visitService.controller.dto.TechnicianRequest;
 import br.ada.visitService.controller.dto.VisitRequest;
 import br.ada.visitService.controller.dto.VisitResponse;
 import br.ada.visitService.exception.IdNotFoundException;
+import br.ada.visitService.exception.PendingPaymentsException;
+import br.ada.visitService.exception.UserNewException;
 import br.ada.visitService.model.Visit;
 import br.ada.visitService.service.VisitService;
 import jakarta.validation.Valid;
@@ -34,7 +36,7 @@ public class VisitController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<VisitResponse> saveVisit(@Valid @RequestBody VisitRequest visitRequest){
+    public ResponseEntity<VisitResponse> saveVisit(@Valid @RequestBody VisitRequest visitRequest) throws UserNewException, PendingPaymentsException {
         VisitResponse visit = visitService.saveNewVisit(visitRequest);
         return ResponseEntity.created(URI.create("/visit/" + visit.getVisitId())).body(visit);
     }

@@ -5,6 +5,8 @@ import br.ada.visitService.controller.dto.TechnicianRequest;
 import br.ada.visitService.controller.dto.VisitRequest;
 import br.ada.visitService.controller.dto.VisitResponse;
 import br.ada.visitService.exception.IdNotFoundException;
+import br.ada.visitService.exception.PendingPaymentsException;
+import br.ada.visitService.exception.UserNewException;
 import br.ada.visitService.model.Technician;
 import br.ada.visitService.model.Visit;
 import br.ada.visitService.repository.TechnicianRepository;
@@ -36,7 +38,7 @@ public class VisitService {
         return VisitConvert.toResponse(visit);
     }
 
-    public VisitResponse saveNewVisit(VisitRequest visitRequest){
+    public VisitResponse saveNewVisit(VisitRequest visitRequest) throws UserNewException, PendingPaymentsException {
         PaymentResponse paymentResponse = webClient.get().uri("/pagamento/consulta/" + visitRequest.getUserId())
                 .retrieve().bodyToMono(PaymentResponse.class).block();
 
@@ -48,8 +50,11 @@ public class VisitService {
             visit.setActive(true);
 
             return VisitConvert.toResponse(visitRepository.save(visit));
+        } else if(!visitRequest.isNewUser()){
+            throw new UserNewException("Visita não pode ser realizada. Para novo usuário, o agendamento é realizado pela Assinatura.");
+        } else{
+            throw new PendingPaymentsException("Visita não pode ser realizada, usuário em débito.");
         }
-        return null;
     }
     
     public List<VisitResponse> getAllVisits(){
