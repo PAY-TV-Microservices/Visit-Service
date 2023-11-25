@@ -10,5 +10,5 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class PaymentResponse {
-    private List<Object> pendingPayments; //Se estiver vazia pode marcar visita
+    private List<Object> pendingPayments;
 }
